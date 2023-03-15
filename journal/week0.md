@@ -32,42 +32,7 @@ Notes/Errors
 2. created the aws/json folder in the doc folder. As a result I was unable to create my billing alarm. Had to delete the folder and create another in Main using gitpod
 3. Aws Cli was unable to read accound_Id as $ACCOUNT which was committed to the environment variable. Had to manually input the account Id for billing alarm to be created
 
-My Code Example;
-{
-    "AlarmName": "DailyEstimatedCharges",
-    "AlarmDescription": "This alarm would be triggered if the daily estimated charges exceeds 1$",
-    "ActionsEnabled": true,
-    "AlarmActions": [
-        "arn:aws:sns:us-east-1:900645165270:billing-alarm"
-    ],
-    "EvaluationPeriods": 1,
-    "DatapointsToAlarm": 1,
-    "Threshold": 1,
-    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
-    "TreatMissingData": "breaching",
-    "Metrics": [{
-        "Id": "m1",
-        "MetricStat": {
-            "Metric": {
-                "Namespace": "AWS/Billing",
-                "MetricName": "EstimatedCharges",
-                "Dimensions": [{
-                    "Name": "Currency",
-                    "Value": "USD"
-                }]
-            },
-            "Period": 86400,
-            "Stat": "Maximum"
-        },
-        "ReturnData": false
-    },
-    {
-        "Id": "e1",
-        "Expression": "IF(RATE(m1)>0,RATE(m1)*86400,0)",
-        "Label": "DailyEstimatedCharges",
-        "ReturnData": true
-    }]
-  }
+
 
 This has been a rewarding, amazing experience. Had to do a lot of self study.
 
